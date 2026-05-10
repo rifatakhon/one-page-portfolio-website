@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Md Rifat Hossain - Professional Web Developer portfolio showcasing full-stack development, Laravel, Oracle, and modern web solutions. 5+ years of experience building scalable systems.">
+  <meta name="keywords" content="Web Developer, Laravel, PHP, Full Stack, Oracle, Portfolio, Md Rifat Hossain, animations, modern UI">
+  <meta name="author" content="Md Rifat Hossain">
+  <meta name="robots" content="index, follow">
+  <title>Md Rifat Hossain | Professional Web Developer | Modern Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fef7;
+      color: #1a2c1a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* custom green palette */
+    :root {
+      --green-deep: #0f3b1c;
+      --green-primary: #2b6e3c;
+      --green-soft: #4c9a5e;
+      --green-mist: #d9f0de;
+      --green-light: #eef6ea;
+      --gray-dark: #2d3e2a;
+      --gray-light: #f5faf2;
+      --white: #ffffff;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / nav */
+    .navbar {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #d4ecce;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #1f5430, #2b8c46);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .logo:hover {
+      transform: scale(1.02);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--green-deep);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      position: relative;
+      padding-bottom: 6px;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-primary), #8bcb7e);
+      transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 4px;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+    .nav-links a.active {
+      color: var(--green-primary);
+      font-weight: 600;
+    }
+
+    /* buttons & common */
+    .btn-primary {
+      display: inline-block;
+      background-color: var(--green-primary);
+      color: white;
+      padding: 0.75rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .btn-primary:hover {
+      background-color: #1c5430;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 20px -12px rgba(43,110,60,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--green-primary);
+      color: var(--green-primary);
+      border-radius: 40px;
+      padding: 0.7rem 1.6rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      background: var(--green-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    section {
+      padding: 5rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+      color: var(--green-deep);
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-primary), #b9e6b0);
+      border-radius: 4px;
+      transition: width 0.4s ease;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .hero-content {
+      flex: 1;
+      animation: fadeInLeft 1s ease-out;
+    }
+    .hero-badge {
+      background: var(--green-mist);
+      color: var(--green-deep);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      animation: pulseGlow 2s infinite;
+    }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(43,110,60,0.2); }
+      70% { box-shadow: 0 0 0 8px rgba(43,110,60,0); }
+      100% { box-shadow: 0 0 0 0 rgba(43,110,60,0); }
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #1b4d2b, #308a4a, #5bbf74);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+    .hero-highlight {
+      font-size: 1.2rem;
+      color: #2b5e2f;
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+      border-left: 4px solid var(--green-primary);
+      padding-left: 1rem;
+    }
+    .hero-desc {
+      color: #2d3e2a;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .stat-item {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--green-primary);
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .hero-avatar {
+      flex: 0.7;
+      background: linear-gradient(145deg, #eafbe5, #ffffff);
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+    .hero-avatar i {
+      font-size: 12rem;
+      color: var(--green-soft);
+      filter: drop-shadow(4px 6px 12px rgba(0,0,0,0.1));
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .skill-card {
+      background: white;
+      padding: 1.2rem 1rem;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+      border: 1px solid #e2f5db;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    .skill-card.animate-card {
+      animation: cardPop 0.5s ease forwards;
+    }
+    @keyframes cardPop {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .skill-card i {
+      font-size: 2rem;
+      color: var(--green-primary);
+      margin-bottom: 0.6rem;
+    }
+    .skill-card span {
+      font-weight: 600;
+      display: block;
+    }
+    .skill-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--green-soft);
+      box-shadow: 0 25px 30px -12px rgba(43,110,60,0.2);
+    }
+
+    /* experience timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .exp-item {
+      background: var(--white);
+      border-radius: 2rem;
+      padding: 1.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+      border-left: 6px solid var(--green-primary);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    .exp-item.visible-item {
+      animation: slideInRight 0.6s forwards;
+    }
+    @keyframes slideInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .exp-item:hover {
+      transform: translateX(8px) scale(1.01);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 32px;
+      padding: 1.5rem;
+      transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid #e2f5db;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .project-card.visible-project {
+      animation: fadeUp 0.7s forwards;
+    }
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      border-color: var(--green-primary);
+    }
+
+    /* contact */
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      background: var(--green-light);
+      border-radius: 48px;
+      padding: 2.5rem;
+      align-items: center;
+      transition: all 0.4s;
+    }
+    .social-links a {
+      background: white;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: var(--green-primary);
+      font-size: 1.4rem;
+      transition: all 0.3s ease;
+    }
+    .social-links a:hover {
+      background: var(--green-primary);
+      color: white;
+      transform: translateY(-5px) rotate(8deg);
+    }
+    footer {
+      background: #0f2a14;
+      color: #cbebc2;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero-content h1 { font-size: 2.3rem; }
+      .hero-avatar i { font-size: 7rem; }
+      .section-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-container">
+    <a href="#" class="logo">Md Rifat Hossain</a>
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero Section -->
+  <section id="home" class="visible">
+    <div class="container hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-code"></i> Full-Stack Engineer</div>
+        <h1>Building Scalable & Secure Web Solutions</h1>
+        <div class="hero-highlight">5+ Years of Excellence in Laravel, Oracle & Modern Web Tech</div>
+        <p class="hero-desc">Software Engineer with expertise in ERP systems, API integrations, high‑traffic platforms and database optimization. I architect robust backends and elegant frontends that drive real business value.</p>
+        <div>
+          <a href="#contact" class="btn-primary">Let's Connect <i class="fas fa-arrow-right"></i></a>
+          <a href="#projects" class="btn-outline" style="margin-left: 1rem;">View Work</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item"><span class="stat-number">20+</span><br>Projects Delivered</div>
+          <div class="stat-item"><span class="stat-number">99.9%</span><br>Uptime SLA</div>
+          <div class="stat-item"><span class="stat-number">12+</span><br>API Integrations</div>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <i class="fas fa-laptop-code"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical Expertise</h2>
+      <div class="skills-grid" id="skillsGrid">
+        <div class="skill-card"><i class="fab fa-laravel"></i><span>Laravel / PHP</span></div>
+        <div class="skill-card"><i class="fas fa-database"></i><span>Oracle / MySQL</span></div>
+        <div class="skill-card"><i class="fab fa-js"></i><span>JavaScript / jQuery</span></div>
+        <div class="skill-card"><i class="fab fa-bootstrap"></i><span>Bootstrap / CSS3</span></div>
+        <div class="skill-card"><i class="fas fa-plug"></i><span>RESTful APIs</span></div>
+        <div class="skill-card"><i class="fab fa-wordpress"></i><span>WordPress / Woo</span></div>
+        <div class="skill-card"><i class="fas fa-code-branch"></i><span>Git & CI/CD</span></div>
+        <div class="skill-card"><i class="fas fa-shield-alt"></i><span>Secure Architecture</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="timeline">
+        <div class="exp-item">
+          <div class="exp-header">
+            <div><span class="exp-title">Senior Executive Officer (IT) / Software Engineer</span><span class="exp-company"> – City Insurance PLC</span></div>
+            <div class="exp-date">2025 – Present</div>
+          </div>
+          <div class="exp-desc"><ul><li>Architected custom workflow & approval system using Laravel+MySQL boosting operational efficiency.</li><li>Integrated Bank Assurance APIs, reduced manual data entry by 70% with 100% accuracy.</li><li>Optimized Oracle DB performance, decreasing report generation time by 8 hours/week.</li><li>Engineered commission management system for 50+ agents, automating financial tracking.</li></ul></div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><div><span class="exp-title">Web Developer</span><span class="exp-company"> – QBitTech</span></div><div class="exp-date">2023 – 2025</div></div>
+          <div class="exp-desc"><ul><li>Led system architecture for multi-tenant apps, mentored 3 junior devs improving sprint velocity.</li><li>Managed full SDLC for high-priority projects, ensuring 99.9% uptime.</li><li>Boosted client satisfaction with tailored technical solutions aligned to growth targets.</li></ul></div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><div><span class="exp-title">Web Developer (Remote)</span><span class="exp-company"> – Manohari IT</span></div><div class="exp-date">2019 – 2022</div></div>
+          <div class="exp-desc"><ul><li>Delivered custom international web solutions, high-performance backend & responsive UI.</li><li>Resolved complex legacy bugs, increased app stability and user retention significantly.</li><li>Integrated 12+ third-party APIs (Courier, Payment, SMS) on e‑commerce platforms handling 80% traffic surge.</li></ul></div>
+        </div>
+      </div>
+      <div style="margin-top: 2rem;"><a href="uploads/2026/CV-Md Rifat Hossain.pdf" class="btn-outline" style="display: inline-flex; gap: 0.5rem;"><i class="fas fa-download"></i> Full CV Resume</a></div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Key Projects & Platforms</h2>
+      <div class="projects-grid">
+        <div class="project-card"><i class="fas fa-face-recognize"></i><h3>Face Recognition Attendance</h3><p>Real-time identification system using image processing, automated reports, reducing manual entry errors.</p><div class="project-links"><a href="https://github.com/rifatakhon"><i class="fab fa-github"></i> Code</a></div></div>
+        <div class="project-card"><i class="fas fa-newspaper"></i><h3>Academic Journal Platforms</h3><p>trivexb.com | imcjms.com — Structured peer‑review system, CMS for thousands of monthly academic readers.</p><div class="project-links"><a href="https://github.com/rifatakhon" target="_blank"><i class="fas fa-external-link-alt"></i> Visit</a></div></div>
+        <div class="project-card"><i class="fas fa-lightbulb"></i><h3>Slogan Generator & Woo Plugin</h3><p>AI‑based logic tool for automated content & custom WooCommerce search plugin enhancing filtering speed.</p></div>
+        <div class="project-card"><i class="fas fa-chart-line"></i><h3>Bank Assurance Integration</h3><p>End-to-end motor insurance processing API, seamless data sync between City Insurance & financial institutions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Training -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Education & Credentials</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+        <div style="flex:1; background: white; border-radius: 32px; padding: 1.6rem; transition: all 0.3s;"><i class="fas fa-graduation-cap" style="font-size: 2rem; color: var(--green-primary);"></i><h3 style="margin: 1rem 0 0.5rem;">BSc (Hons) CSE</h3><p>Institute of Science and Technology, Bangladesh | CGPA: 2.98</p><p><strong>HSC & SSC:</strong> GPA 5.00/5.00</p></div>
+        <div style="flex:1; background: white; border-radius: 32px; padding: 1.6rem;"><i class="fas fa-microchip" style="font-size: 2rem; color: var(--green-primary);"></i><h3 style="margin: 1rem 0 0.5rem;">Training</h3><p>Android Development (LICT TOP-UP IT Program) 2017-2018</p><p><strong>Languages:</strong> English (Professional), Bangla (Native)</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-flex">
+        <div class="contact-info"><h2 style="font-size: 1.9rem; margin-bottom: 0.5rem;">Let's work together</h2><p style="margin-bottom: 1rem;">Open for collaborations, freelance or full-time opportunities — I bring high‑availability solutions.</p><p><i class="fas fa-phone-alt"></i> +8801738758133</p><p><i class="fas fa-envelope"></i> rifatakhon@gmail.com</p><p><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p><div class="social-links"><a href="https://github.com/rifatakhon" aria-label="GitHub"><i class="fab fa-github"></i></a><a href="https://www.linkedin.com/in/rifatakhon/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div></div>
+        <div style="flex:1"><form action="#" method="POST" style="display: flex; flex-direction: column; gap: 1rem;"><input type="text" placeholder="Your Name" style="padding: 1rem; border-radius: 60px; border: 1px solid #cbe5c4;"><input type="email" placeholder="Email Address" style="padding: 1rem; border-radius: 60px; border: 1px solid #cbe5c4;"><textarea rows="3" placeholder="Project idea or message" style="padding: 1rem; border-radius: 32px; border: 1px solid #cbe5c4;"></textarea><button type="button" class="btn-primary" style="width: fit-content;">Send Message</button></form></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="container"><p>© 2026 Md Rifat Hossain — Software Engineer. Crafted with <i class="fas fa-leaf" style="color: #98d689;"></i> in Bangladesh.</p><p style="margin-top: 0.7rem; font-size: 0.85rem;">Full‑stack excellence • Laravel • Oracle • Modern web solutions</p></div></footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const sections = document.querySelectorAll('section');
+  const skillCards = document.querySelectorAll('.skill-card');
+  const expItems = document.querySelectorAll('.exp-item');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
+  
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Trigger active nav update
+        const id = entry.target.getAttribute('id');
+        if (id) updateActiveNavLink(id);
+      }
+    });
+  }, observerOptions);
+  
+  sections.forEach(section => sectionObserver.observe(section));
+  
+  // specific element animations for cards, timeline
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-card');
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  skillCards.forEach(card => skillObserver.observe(card));
+  
+  const expObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible-item');
+        expObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  expItems.forEach(item => expObserver.observe(item));
+  
+  const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible-project');
+        projectObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  projectCards.forEach(project => projectObserver.observe(project));
+  
+  // navigation active link update + smooth scroll with offset
+  const navLinks = document.querySelectorAll('.nav-link');
+  function updateActiveNavLink(currentId) {
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href').substring(1);
+      if (href === currentId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+  
+  // smooth scroll to section respecting sticky header
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 70; // navbar height approx
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+        updateActiveNavLink(targetId);
+      }
+    });
+  });
+  
+  // initial visible home active
+  if(window.location.hash === '') updateActiveNavLink('home');
+  window.addEventListener('load', () => {
+    if(window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const el = document.getElementById(id);
+      if(el) setTimeout(() => { window.scrollTo({ top: el.offsetTop - 70, behavior: 'smooth' }); }, 100);
+    }
+    // also manually trigger visible for elements already visible
+    skillCards.forEach(card => { if(card.getBoundingClientRect().top < window.innerHeight) card.classList.add('animate-card'); });
+    expItems.forEach(item => { if(item.getBoundingClientRect().top < window.innerHeight) item.classList.add('visible-item'); });
+    projectCards.forEach(proj => { if(proj.getBoundingClientRect().top < window.innerHeight) proj.classList.add('visible-project'); });
+  });
+</script>
+</body>
+</html>
